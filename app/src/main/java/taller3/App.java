@@ -9,8 +9,7 @@ public class App {
    
 
    }
-
-   /*
+ /*
     * 1. Construya un algoritmo e implemente la función en Java Escribir_asc que
     * reciba tres números enteros diferentes
     * y devuelva en un String en orden ascendente con el siguiente formato:
@@ -20,22 +19,89 @@ public class App {
     * devolverá el mensaje: "Error: La función no considera números iguales". Si
     * hay un error inesperado, deberá mostrar
     * el mensaje: "Ocurrió un error inesperado".
-    */
+     */
+    public static String Escribir_asc(int num1, int num2, int num3) {
+        try {
+            int mayor = 0, medio = 0, menor = 0;
+            if (num1 == num2 || num2 == num3 || num1 == num3) {
+                return "Error: La función no considera números iguales";
+            }
+
+            if (num1 > num2 && num1 > num3) {
+                mayor = num1;
+                if (num2 > num3) {
+                    medio = num2;
+                    menor = num3;
+                } else {
+                    medio = num3;
+                    menor = num2;
+                }
+
+            } else if (num2 > num1 && num2 > num3) {
+                mayor = num2;
+                if (num1 > num3) {
+                    medio = num1;
+                    menor = num3;
+                } else {
+                    medio = num3;
+                    menor = num1;
+                }
+            } else if (num3 > num1 && num3 > num2) {
+                mayor = num3;
+                if (num1 > num2) {
+                    medio = num1;
+                    menor = num2;
+                } else {
+                    medio = num2;
+                    menor = num1;
+                }
+            }
+
+            return mayor + " - " + medio + " - " + menor;
+
+        } catch (Exception e) {
+            return "Ocurrió un error inesperado";
+        }
+    }
 
 
-
-   /*
+    /*
     * 2. Construya un algoritmo e implemente la función en Java Obtener_cifras que
     * recibe un número entre 0 y 50.000
     * y devuelve byte con las cifras que tiene. Por ejemplo 10 tiene dos cifras,
     * 9999 tiene 4 cifras. Si el número
     * no está en el rango devuelve 0. Y si hay un error inesperado, devuelve -1.
     * 
-    */
+     */
+    public static byte Obtener_cifras(int num) {
 
+        try {
+            byte cifras_numero = 0;
+            final int decenas = 10, centenas = 100, milesimas = 1000, cienmilesimas = 100000, cifras1 = 1, cifras2 = 2, cifras3 = 3, cifras4 = 4;
 
+            if (num < 0 || num > 50000) {
+                return 0;
+            }
 
-   /*
+            if (num < decenas) {
+                cifras_numero = cifras1;
+            } else if (num < centenas) {
+                cifras_numero = cifras2;
+            } else if (num < milesimas) {
+                cifras_numero = cifras3;
+            } else if (num < cienmilesimas) {
+                cifras_numero = cifras4;
+            }
+
+            return cifras_numero;
+
+        } catch (Exception e) {
+            return -1;
+        }
+
+    }
+
+    /*
     * 3. Construya un algoritmo e implemente la función en Java Clasificar_char que
     * recibe un caracter, y
     * devuelve un string de acuerdo con las siguientes condiciones: si es un
@@ -47,11 +113,25 @@ public class App {
     * Si hay un error inesperado, deberá mostrar el mensaje:
     * "Ocurrió un error inesperado".
     * 
-    */
+     */
+    public static String Clasificar_char(char caracter) {
 
+        try {
+            if (Character.isLetter(caracter)) {
+                return "ES LETRA";
+            } else if (Character.isDigit(caracter)) {
+                return "ES NUMERO";
+            } else {
+                return "ESPECIAL";
+            }
 
+        } catch (Exception e) {
+            return "Ocurrió un error inesperado";
+        }
 
-   /*
+    }
+
+    /*
     * 
     * 4. Construya un algoritmo e implemente la función en Java
     * Hallar_division_exacta que pida dos números enteros,
@@ -68,38 +148,86 @@ public class App {
     * 
     * 
     * 
-    */
+     */
+    public static String Hallar_division_exacta(int num1, int num2) {
 
-   
+        try {
 
-   /*
-    * 5. En la siguiente tabla se encuentra la información de las habitaciones de
-    * una finca hotel:
-    * 
-    * Habitación Camas Planta    AA/VENTILADOR
-    *    101         2     Primera     AA
-    *    102         1     Primera     VE
-    *    201         3     Segunda     AA
-    *    202         2     Segunda     VE
-    *    301         2     Tercera     AA
-    * 
-    * 
-    * Construya un algoritmo e implemente la función en Java Consultar_hab que
-    * reciba en un byte el número de camas
-    * y en un string si desea VE o AA, y deuvelva en un texto el o los números de
-    * habitación que cumplen ese requisito.
-    * Si son varias habitaciones, devuelvalas separadas por el caracter |
-    * (normalmente, al lado izquierdo de la tecla del 1).
-    * Ejemplo: "101|301"
-    * Si el número de camas no está entre 1 y 3 o el string es diferente a AA o VE,
-    * devuelva "DATOS NO VÁLIDOS".
-    * Si hay un error inesperado, deberá mostrar el mensaje:
-    * "Ocurrió un error inesperado".
-    */
+            double division = 0;
 
+            if (num1 <= 0 || num2 <= 0) {
+                return "NO SE ADMITE CERO O NEGATIVOS";
+            }
 
-   
-   /*
+            division = num1 % num2;
+            if (division == 0) {
+                return "DIVISION EXACTA"; 
+            }else {
+                return "DIVISION NO EXACTA";
+            }
+
+        } catch (Exception e) {
+            return "Ocurrió un error inesperado";
+        }
+
+    }
+
+    /*
+      * 5. En la siguiente tabla se encuentra la información de las habitaciones de
+      * una finca hotel:
+      * 
+      * Habitación Camas Planta    AA/VENTILADOR
+      *    101         2     Primera     AA
+      *    102         1     Primera     VE
+      *    201         3     Segunda     AA
+      *    202         2     Segunda     VE
+      *    301         2     Tercera     AA
+      * 
+      * 
+      * Construya un algoritmo e implemente la función en Java Consultar_hab que
+      * reciba en un byte el número de camas
+      * y en un string si desea VE o AA, y deuvelva en un texto el o los números de
+      * habitación que cumplen ese requisito.
+      * Si son varias habitaciones, devuelvalas separadas por el caracter |
+      * (normalmente, al lado izquierdo de la tecla del 1).
+      * Ejemplo: "101|301"
+      * Si el número de camas no está entre 1 y 3 o el string es diferente a AA o VE,
+      * devuelva "DATOS NO VÁLIDOS".
+      * Si hay un error inesperado, deberá mostrar el mensaje:
+      * "Ocurrió un error inesperado".
+     */
+    public static String Consultar_hab(byte num_camas, String ventilador) {
+
+        try {
+            String AA = "AA", VE = "VE", resultado = "";
+            final String habit1 = "101", habit1_2 = "102", habit2 = "201", habit2_2 = "202", habit3 = "301";
+            final int camas1 = 1, camas2 = 2, camas3 = 3;
+
+            if (num_camas < camas1 || num_camas > camas3 || !ventilador.equals(AA) || !ventilador.equals(VE)) {
+                resultado = "DATOS NO VÁLIDOS";
+            }
+
+            if (num_camas == camas1 && ventilador.equals(VE)) {
+                resultado = habit1_2;
+
+            } else if (num_camas == camas3 && ventilador.equals(AA)) {
+                resultado = habit2;
+
+            } else if (num_camas == camas2 && ventilador.equals(VE)) {
+                resultado = habit2_2;
+
+            } else if (num_camas == camas2 && ventilador.equals(AA)) {
+                resultado = habit1 + "|" + habit3;
+            }
+
+            return resultado;
+        } catch (Exception e) {
+            return "Ocurrió un error inesperado";
+        }
+
+    }
+
+    /*
     * 
     * 6. Un restaurante vende 3 platos. Si el cliente solicita el plato 1, le dan
     * el postre gratis; si selecciona los platos
@@ -112,15 +240,52 @@ public class App {
     * Si los 3 platos vienen en false, , devuelva "PLATOS NO VÁLIDOS".
     * Si hay un error inesperado, deberá mostrar el mensaje:
     * "Ocurrió un error inesperado".
-    */
+     */
+    public static String Obtener_obs(boolean plato1, boolean plato2, boolean plato3) {
+        try {
 
+            String resultado = "";
+            final String postre = "POSTRE", bebida = "BEBIDA", juntos = "BEBIDA Y POSTRE";
+            int seleccion = 0;
 
+            if (plato1 == false && plato2 == false && plato3 == false) {
+                return "PLATOS NO VÁLIDOS";
+            }
 
+            if (plato1) {
+                seleccion += 1;
+            }
+            if (plato2) {
+                seleccion += 2;
+            }
+            if (plato3) {
+                seleccion += 4;
+            }
 
+            switch (seleccion) {
+                case 1:
 
+                    resultado = postre;
+                    break;
+                case 3:
+                    resultado = bebida;
+                    break;
+                case 7:
+                    resultado = juntos;
+                    break;
+                default:
+                    resultado = "PLATOS NO VÁLIDOS";
+            }
 
+            return resultado;
 
-   /*
+        } catch (Exception e) {
+            return "Ocurrió un error inesperado";
+        }
+
+    }
+
+    /*
     * 7. Un grupo de amigos hace un sorteo semanalmente con pelotas de ping pong,
     * para saber quién invita y a qué  la próxima salida.
     * Las opciones dependen del color que sacan en cada bola y son:
@@ -140,5 +305,44 @@ public class App {
     * Si hay un error inesperado, deberá mostrar el mensaje:
     * "Ocurrió un error inesperado".
     * 
-    */
+     */
+    public static String Conocer_invitacion(String color_bola) {
+        try {
+            String resultado = "";
+            final String verde = "verde", azul = "azul", rojo = "rojo", amarillo = "amarillo", blanco = "blanco", negro = "negro";
 
+            if (!color_bola.equals(verde) && !color_bola.equals(azul) && !color_bola.equals(rojo) && !color_bola.equals(amarillo) && !color_bola.equals(blanco) && !color_bola.equals(negro)) {
+                return "Error en el color";
+            }
+
+            switch (color_bola) {
+                case verde:
+                    resultado = "Invita a las cervezas";
+                    break;
+                case azul:
+                    resultado = "Invita a la pizza";
+                    break;
+                case rojo:
+                    resultado = "Invita al postre";
+                    break;
+                case amarillo:
+                    resultado = "Paga el parqueadero de todos";
+                    break;
+                case blanco:
+                case negro:
+                    resultado = "Vaya y disfrute";
+                    break;
+                default:
+                    resultado = "Ocurrió un error inesperado";
+                    break;
+            }
+
+            return resultado;
+
+        } catch (Exception e) {
+            return "Ocurrió un error inesperado";
+        }
+
+    }
+
+}
